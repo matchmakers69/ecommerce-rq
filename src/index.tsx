@@ -4,6 +4,7 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { SidebarProvider } from "context/SidebarContext";
+import CartProvider from "context/CartContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <Router>
     <SidebarProvider>
-      <App />
+      <CartProvider>
+        <App />
+      </CartProvider>
     </SidebarProvider>
   </Router>
 );

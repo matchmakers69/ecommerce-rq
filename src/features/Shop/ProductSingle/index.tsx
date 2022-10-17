@@ -1,18 +1,15 @@
 import {
   Avatar,
-  Box,
-  Button,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
-  IconButton,
   Typography,
   useTheme,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import { red } from "@mui/material/colors";
-import { Product } from "../types";
+import { Product } from "types/products";
 
 type ProductProps = {
   product: Product;

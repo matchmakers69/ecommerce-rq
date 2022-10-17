@@ -4,7 +4,7 @@ import useSnackbar from "hooks/useSnackbar";
 import { errorMessage } from "utils/helpers/errorMessageTitle";
 import { useQuery } from "react-query";
 import { getProducts } from "services/api/shop";
-import { Product } from "../types";
+import { Product } from "types/products";
 import filteredProductsCategory from "utils/products/filterProductsByCategory";
 
 interface UseProducts {

@@ -8,12 +8,13 @@ import {
   useTheme,
   Button,
   darken,
+  Typography,
 } from "@mui/material";
 
-import SidebarMenu from "./SidebarMenu";
 import { SidebarContext } from "context/SidebarContext";
 import Scrollbar from "components/ui/Scrollbar";
-import SidebarShopCategories from "./SidebarShopCategories";
+import { CartContext } from "context/CartContext";
+import Cart from "../Cart";
 
 const SidebarWrapper = styled(Box)(
   ({ theme }) => `
@@ -27,9 +28,9 @@ const SidebarWrapper = styled(Box)(
 `
 );
 
-const Sidebar = () => {
-  const { sidebarToggle, toggleSidebar, appType } = useContext(SidebarContext);
-  const closeSidebar = () => toggleSidebar();
+const SidebarCart = () => {
+  const { cartToggle, handleToggleOpenCartSidebar } = useContext(CartContext);
+  const closeCartSidebar = () => handleToggleOpenCartSidebar();
   const theme = useTheme();
 
   return (
@@ -37,8 +38,7 @@ const Sidebar = () => {
       <SidebarWrapper
         sx={{
           display: {
-            xs: "none",
-            lg: "inline-block",
+            xs: !cartToggle ? "none" : "inline-block",
           },
           position: "fixed",
           left: 0,
@@ -67,11 +67,7 @@ const Sidebar = () => {
               background: theme.colors.alpha.white[10],
             }}
           />
-          {appType === "react-query" ? (
-            <SidebarMenu />
-          ) : (
-            <SidebarShopCategories />
-          )}
+          {<div>feswrvgdrfes</div>}
         </Scrollbar>
         <Divider
           sx={{
@@ -84,8 +80,8 @@ const Sidebar = () => {
           boxShadow: `${theme.sidebar.boxShadow}`,
         }}
         anchor={theme.direction === "rtl" ? "right" : "left"}
-        open={sidebarToggle}
-        onClose={closeSidebar}
+        open={cartToggle}
+        onClose={closeCartSidebar}
         variant="temporary"
         elevation={9}
       >
@@ -96,23 +92,18 @@ const Sidebar = () => {
         >
           <Scrollbar>
             <Box mt={3}>
-              <Box
-                mx={2}
-                sx={{
-                  width: 52,
-                }}
-              >
-                Logo here
+              <Box mx={2}>
+                <Typography variant="h2">Cart</Typography>
               </Box>
             </Box>
             <Divider
               sx={{
                 mt: theme.spacing(3),
                 mx: theme.spacing(2),
-                background: theme.colors.alpha.white[10],
+                background: theme.colors.secondary.lighter,
               }}
             />
-            <SidebarMenu />
+            <Cart />
           </Scrollbar>
         </SidebarWrapper>
       </Drawer>
@@ -120,4 +111,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarCart;

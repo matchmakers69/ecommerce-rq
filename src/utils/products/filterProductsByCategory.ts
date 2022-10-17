@@ -1,4 +1,4 @@
-import { Product } from "features/Shop/types";
+import { Product } from "types/products";
 
 const filteredProductsCategory = (
   productsArr: Product[],

@@ -3,6 +3,7 @@ import { Box, Container, CssBaseline } from "@mui/material";
 import Footer from "../Footer";
 import { Outlet } from "react-router-dom";
 import AppBar from "../AppBar";
+import SidebarCart from "../SidebarCart";
 
 type LayoutProps = {
   children?: ReactNode;
@@ -43,6 +44,7 @@ const Layout = ({ children }: LayoutProps) => {
             {children || <Outlet />}
           </Box>
         </Container>
+        <SidebarCart />
         <Footer />
       </Box>
     </>

@@ -1,5 +1,5 @@
 import jsonPlaceholderSpa from "config/axios/jsonPlaceholderShop";
-import { Product } from "features/Shop/types";
+import { Product } from "types/products";
 
 export const getProducts = async (): Promise<Product[]> => {
   const res = await jsonPlaceholderSpa.get("/products");

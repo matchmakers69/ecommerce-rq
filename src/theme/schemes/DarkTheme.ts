@@ -743,15 +743,15 @@ export const DarkTheme = createTheme({
       color: colors.secondary.light,
       ...responsiveFontSize(
         { sm: 19, md: 19, lg: 21, xl: 24 },
-        { sm: "32px", md: "32px", lg: "38px", xl: "40px" }
+        { sm: "30px", md: "30px", lg: "30px", xl: "30px" }
       ),
     },
     h5: {
       fontWeight: 400,
       color: colors.secondary.light,
       ...responsiveFontSize(
-        { sm: 19, md: 19, lg: 21, xl: 24 },
-        { sm: "32px", md: "32px", lg: "38px", xl: "40px" }
+        { sm: 19, md: 19, lg: 20, xl: 22 },
+        { sm: "30px", md: "30px", lg: "30px", xl: "30px" }
       ),
     },
     h6: {
