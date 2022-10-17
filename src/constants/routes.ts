@@ -1,0 +1,17 @@
+export const routes = {
+  HOME: "/",
+  REACT_QUERY: "/react-query",
+  PRODUCTS: "/products",
+  PRODUCTS_FILTER: "/products-filter",
+  POSTS: "/react-query/posts",
+  BOOKS: "/react-query/books",
+  BOOK: "/react-query/books/:id",
+  POST: "/react-query/posts/:id",
+  LAZY_SPA: "/react-query/lazy-spa",
+  TREATMENTS: "/react-query/lazy-spa/treatments",
+  STAFF: "/react-query/lazy-spa/staff",
+  USERS: "/react-query/users",
+  SPAGHETTIUSERS: "/react-query/users/spaghetti",
+  USEFETCHUSERS: "/react-query/users/use-fetch-users",
+  RQUSEQUERYUSERS: "/react-query/users/rq-fetch-users",
+};

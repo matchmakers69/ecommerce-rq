@@ -1,0 +1,24 @@
+{
+  "books": [
+    {
+      "id": "fcewMogym",
+      "title": "Winnie-the-Pooh",
+      "author": "A. A. Milne"
+    },
+    {
+      "id": "book-l965hk71",
+      "title": "1984",
+      "author": "George Orwell"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
