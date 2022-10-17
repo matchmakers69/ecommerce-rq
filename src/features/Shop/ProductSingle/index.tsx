@@ -1,6 +1,8 @@
 import {
   Avatar,
+  Button,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   CardMedia,
@@ -9,13 +11,17 @@ import {
 } from "@mui/material";
 
 import { red } from "@mui/material/colors";
+import { CartContext } from "context/CartContext";
+import { useContext } from "react";
 import { Product } from "types/products";
 
 type ProductProps = {
   product: Product;
+  isDisabled?: boolean;
 };
 
-const ProductSingle = ({ product }: ProductProps) => {
+const ProductSingle = ({ product, isDisabled }: ProductProps) => {
+  const { addToCart, addToCartText } = useContext(CartContext);
   const theme = useTheme();
   return (
     <Card
@@ -45,6 +51,16 @@ const ProductSingle = ({ product }: ProductProps) => {
           {product.description}
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button
+          disabled={isDisabled}
+          onClick={() => addToCart(product)}
+          size="small"
+          variant="contained"
+        >
+          {addToCartText(product)}
+        </Button>
+      </CardActions>
     </Card>
   );
 };

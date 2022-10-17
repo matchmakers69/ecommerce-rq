@@ -282,7 +282,7 @@ export const DarkTheme = createTheme({
     text: {
       primary: colors.alpha.black[100],
       secondary: colors.alpha.black[70],
-      disabled: colors.alpha.black[50],
+      disabled: colors.alpha.white[100],
     },
     background: {
       paper: colors.alpha.white[100],
@@ -294,9 +294,9 @@ export const DarkTheme = createTheme({
       hoverOpacity: 0.1,
       selected: colors.alpha.black[10],
       selectedOpacity: 0.1,
-      disabled: colors.alpha.black[50],
-      disabledBackground: colors.alpha.black[5],
-      disabledOpacity: 0.38,
+      disabled: colors.alpha.white[50],
+      disabledBackground: colors.alpha.trueWhite[30],
+      disabledOpacity: 0.2,
       focus: colors.alpha.black[10],
       focusOpacity: 0.05,
       activatedOpacity: 0.12,

@@ -7,6 +7,8 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import { CartContext } from "context/CartContext";
+import { useContext } from "react";
 
 import useCategories from "../hooks/useCategories";
 import useProductsSelect from "../hooks/useProductsSelect";
@@ -14,11 +16,11 @@ import ProductSingle from "../ProductSingle";
 
 const ProductsList = () => {
   const { data: categories } = useCategories();
+  const { checkIsAlreadyAdded } = useContext(CartContext);
   const { products, categoryName, setCategoryName } = useProductsSelect();
   const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryName((event.target as HTMLInputElement).value);
   };
-
   return (
     <Box mb={2}>
       <Box mb={6}>
@@ -58,9 +60,14 @@ const ProductsList = () => {
         }}
       >
         {products?.map((product) => {
+          // const isAlreadyAddedtoBasket = checkIsAlreadyAdded(product);
+
           return (
             <Grid key={product.id} item xs={12} sm={12} md={4}>
-              <ProductSingle product={product} />
+              <ProductSingle
+                // isDisabled={isAlreadyAddedtoBasket}
+                product={product}
+              />
             </Grid>
           );
         })}

@@ -5,7 +5,7 @@ import { useContext } from "react";
 const Cart = () => {
   const theme = useTheme();
   const { cartProducts } = useContext(CartContext);
-  console.log(cartProducts, "cartProducts");
+  console.log(cartProducts);
   return (
     <Box
       sx={{
