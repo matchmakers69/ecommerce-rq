@@ -13,5 +13,6 @@ export interface Product extends Id {
   brand: string;
   category: string;
   thumbnail: string;
+  quantity?: number;
   images: Array<string>;
 }

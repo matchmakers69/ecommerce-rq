@@ -6,12 +6,10 @@ import {
   styled,
   Divider,
   useTheme,
-  Button,
   darken,
   Typography,
 } from "@mui/material";
 
-import { SidebarContext } from "context/SidebarContext";
 import Scrollbar from "components/ui/Scrollbar";
 import { CartContext } from "context/CartContext";
 import Cart from "../Cart";

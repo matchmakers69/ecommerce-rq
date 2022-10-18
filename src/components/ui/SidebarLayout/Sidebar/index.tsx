@@ -1,14 +1,6 @@
 import { useContext } from "react";
 
-import {
-  Box,
-  Drawer,
-  styled,
-  Divider,
-  useTheme,
-  Button,
-  darken,
-} from "@mui/material";
+import { Box, Drawer, styled, Divider, useTheme, darken } from "@mui/material";
 
 import SidebarMenu from "./SidebarMenu";
 import { SidebarContext } from "context/SidebarContext";

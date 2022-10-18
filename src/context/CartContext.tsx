@@ -1,3 +1,4 @@
+import { useLocalStorage } from "hooks/useLocalStorage";
 import {
   ReactNode,
   createContext,
@@ -14,6 +15,8 @@ type CartContextType = {
   addToCart: (item: Product) => void;
   checkIsAlreadyAdded: (product: Product) => boolean;
   addToCartText: (product: Product) => string;
+  quantities: ProductQuantity;
+  handleIncreaseQuantity: (item: Product) => void;
 };
 export const CartContext = createContext<CartContextType>(
   {} as CartContextType
@@ -23,9 +26,15 @@ type CartContextProps = {
   children: ReactNode;
 };
 
+type ProductQuantity = Record<number, number>;
+
 const CartProvider = ({ children }: CartContextProps) => {
   const [cartToggle, setCartToggle] = useState(false);
-  const [cartProducts, setCartProducts] = useState<Product[]>([]);
+  const [quantities, setQuantities] = useState<ProductQuantity>({});
+  const [cartProducts, setCartProducts] = useLocalStorage<Product[]>(
+    "shopping-cart",
+    []
+  );
 
   const handleToggleOpenCartSidebar = useCallback(() => {
     setCartToggle(!cartToggle);
@@ -38,7 +47,12 @@ const CartProvider = ({ children }: CartContextProps) => {
       );
       cartProducts.findIndex((item) => item.id === product.id) >= 0
         ? setCartProducts(filteredCartItems)
-        : setCartProducts([...cartProducts, product]);
+        : setCartProducts((prevState) => [...prevState, product]);
+
+      setQuantities((prevState) => ({
+        ...prevState,
+        [product.id]: 1, // ustawiennie stanu poczatkowego dla quantities
+      }));
 
       // Alernative way to check if in cart
       // const hasCartItems = cartProducts.some((item) => item.id === product.id);
@@ -48,7 +62,7 @@ const CartProvider = ({ children }: CartContextProps) => {
       //   : [...cartProducts, product];
       // setCartProducts(productsToBeAdded);
     },
-    [cartProducts]
+    [cartProducts, setCartProducts]
   );
 
   const addToCartText = useCallback(
@@ -74,6 +88,23 @@ const CartProvider = ({ children }: CartContextProps) => {
     [cartProducts]
   );
 
+  const handleIncreaseQuantity = useCallback(
+    (product: Product) => {
+      const currentProduct = cartProducts.find(
+        (item) => item.id === product.id
+      );
+      if (!currentProduct) return;
+
+      setQuantities((prevState) => ({
+        ...prevState,
+        [currentProduct.id]: prevState[currentProduct.id] + 1,
+        // ? prevState[currentProduct.id] + 1
+        // : 2,
+      }));
+    },
+    [cartProducts]
+  );
+
   const value = useMemo(
     () => ({
       cartToggle,
@@ -82,6 +113,8 @@ const CartProvider = ({ children }: CartContextProps) => {
       addToCart,
       checkIsAlreadyAdded,
       addToCartText,
+      handleIncreaseQuantity,
+      quantities,
     }),
     [
       addToCart,
@@ -90,6 +123,8 @@ const CartProvider = ({ children }: CartContextProps) => {
       handleToggleOpenCartSidebar,
       checkIsAlreadyAdded,
       addToCartText,
+      handleIncreaseQuantity,
+      quantities,
     ]
   );
 
