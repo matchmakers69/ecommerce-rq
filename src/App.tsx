@@ -9,6 +9,7 @@ import router from "./routes/router";
 import ThemeProviderWrapper from "theme/ThemeProvider";
 import SnackbarProvider from "components/ui/Snackbar/SnackbarProvider";
 import { queryClient } from "lib/react-query";
+import SearchProvider from "context/SearchContext";
 
 const App = () => {
   const content = useRoutes(router);
@@ -20,12 +21,14 @@ const App = () => {
       <ThemeProviderWrapper>
         <CssBaseline />
         <SnackbarProvider>
-          <ErrorBoundary
-            FallbackComponent={ErrorFallback}
-            onError={errorHandler}
-          >
-            {content}
-          </ErrorBoundary>
+          <SearchProvider>
+            <ErrorBoundary
+              FallbackComponent={ErrorFallback}
+              onError={errorHandler}
+            >
+              {content}
+            </ErrorBoundary>
+          </SearchProvider>
         </SnackbarProvider>
       </ThemeProviderWrapper>
     </QueryClientProvider>

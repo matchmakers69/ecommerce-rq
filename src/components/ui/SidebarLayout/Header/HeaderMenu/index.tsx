@@ -1,16 +1,8 @@
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Menu,
-  MenuItem,
-} from "@mui/material";
+import { Box, List, ListItem, ListItemText } from "@mui/material";
 import { useRef, useState } from "react";
 import ExpandMoreTwoToneIcon from "@mui/icons-material/ExpandMoreTwoTone";
-import { NavLink } from "react-router-dom";
+
 import { styled } from "@mui/material/styles";
-import constants from "../../../../../constants";
 
 const ListWrapper = styled(Box)(
   ({ theme }) => `
@@ -89,28 +81,6 @@ function HeaderMenu() {
           <ListItem
             classes={{ root: "MuiListItem-indicators" }}
             button
-            component={NavLink}
-            to={constants.routes.TREATMENTS}
-          >
-            <ListItemText
-              primaryTypographyProps={{ noWrap: true }}
-              primary="Treatments"
-            />
-          </ListItem>
-          <ListItem
-            classes={{ root: "MuiListItem-indicators" }}
-            button
-            component={NavLink}
-            to={constants.routes.STAFF}
-          >
-            <ListItemText
-              primaryTypographyProps={{ noWrap: true }}
-              primary="Staff"
-            />
-          </ListItem>
-          <ListItem
-            classes={{ root: "MuiListItem-indicators" }}
-            button
             ref={ref}
             onClick={handleOpen}
           >
@@ -128,36 +98,6 @@ function HeaderMenu() {
           </ListItem>
         </List>
       </ListWrapper>
-      <Menu anchorEl={ref.current} onClose={handleClose} open={isOpen}>
-        <MenuItem
-          sx={{ px: 3 }}
-          component={NavLink}
-          to={constants.routes.LAZY_SPA}
-        >
-          Overview
-        </MenuItem>
-        <MenuItem
-          sx={{ px: 3 }}
-          component={NavLink}
-          to={constants.routes.LAZY_SPA}
-        >
-          Tabs
-        </MenuItem>
-        <MenuItem
-          sx={{ px: 3 }}
-          component={NavLink}
-          to={constants.routes.LAZY_SPA}
-        >
-          Cards
-        </MenuItem>
-        <MenuItem
-          sx={{ px: 3 }}
-          component={NavLink}
-          to={constants.routes.LAZY_SPA}
-        >
-          Modals
-        </MenuItem>
-      </Menu>
     </>
   );
 }

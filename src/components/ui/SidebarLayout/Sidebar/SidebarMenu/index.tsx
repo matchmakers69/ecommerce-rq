@@ -11,9 +11,6 @@ import {
 import { NavLink as RouterLink } from "react-router-dom";
 import constants from "../../../../../constants";
 import DesignServicesTwoToneIcon from "@mui/icons-material/DesignServicesTwoTone";
-import BookTwoToneIcon from "@mui/icons-material/BookTwoTone";
-import HotTubTwoToneIcon from "@mui/icons-material/HotTubTwoTone";
-import PeopleAltTwoToneIcon from "@mui/icons-material/PeopleAltTwoTone";
 import { SidebarContext } from "context/SidebarContext";
 
 const MenuWrapper = styled(Box)(
@@ -177,56 +174,7 @@ const SidebarMenu = () => {
               React query
             </ListSubheader>
           }
-        >
-          <SubMenuWrapper>
-            <List component="div">
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to={constants.routes.BOOKS}
-                  startIcon={<BookTwoToneIcon />}
-                >
-                  Books
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to={constants.routes.POSTS}
-                  startIcon={<BookTwoToneIcon />}
-                >
-                  Posts
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to={constants.routes.LAZY_SPA}
-                  startIcon={<HotTubTwoToneIcon />}
-                >
-                  Lazy Spa
-                </Button>
-              </ListItem>
-              <ListItem component="div">
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  onClick={closeSidebar}
-                  to={constants.routes.USERS}
-                  startIcon={<PeopleAltTwoToneIcon />}
-                >
-                  Users
-                </Button>
-              </ListItem>
-            </List>
-          </SubMenuWrapper>
-        </List>
+        ></List>
       </MenuWrapper>
     </>
   );

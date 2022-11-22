@@ -1,11 +1,11 @@
-import Page from "components/ui/Page";
-import PageTitleWrapper from "components/ui/PageTitleWrapper";
+import SearchForm from "components/ui/forms/SearchForm";
+import SearchWrapper from "components/ui/SearchWrapper";
 
 const HomePage = () => {
   return (
-    <PageTitleWrapper>
-      <Page title="React query workshop">React query basic concepts</Page>
-    </PageTitleWrapper>
+    <SearchWrapper title="Search Products">
+      <SearchForm />
+    </SearchWrapper>
   );
 };
 

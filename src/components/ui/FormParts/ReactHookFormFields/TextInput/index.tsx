@@ -5,15 +5,15 @@ import {
   TextFieldProps,
 } from "@mui/material";
 
-type TextFieldVariants = "outlined" | "filled" | "standard";
-type TextFieldTypes = "text" | "password" | "email";
+type Variants = "outlined" | "filled" | "standard";
+type Types = "text" | "password" | "email";
 
 type TFieldProps = {
   label: string;
   name: string;
-  variant?: TextFieldVariants;
+  variant: Variants;
   inputProps?: InputBaseComponentProps;
-  type: TextFieldTypes;
+  type: Types;
   fullWidth?: boolean;
   multiline?: boolean | undefined;
   rows?: number;
@@ -24,7 +24,7 @@ const TextInput = ({
   name,
   inputProps,
   variant,
-  type,
+  type = "text",
   fullWidth,
   rows,
   multiline,
