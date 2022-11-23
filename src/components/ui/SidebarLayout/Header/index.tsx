@@ -12,20 +12,16 @@ import * as S from "./Header.styled";
 import { SidebarContext } from "context/SidebarContext";
 import MenuTwoToneIcon from "@mui/icons-material/MenuTwoTone";
 import CloseTwoToneIcon from "@mui/icons-material/CloseTwoTone";
-import { ReactElement, useContext } from "react";
+import { FC, ReactElement, useContext } from "react";
 import HeaderMenu from "./HeaderMenu";
 import HeaderMenuUsers from "./HeaderMenuUsers";
 import BasketMenu from "./BasketMenu";
-
-const headerComponentMapper: Record<string, ReactElement> = {
-  "lazy-spa": <HeaderMenu />,
-  users: <HeaderMenuUsers />,
-};
+import { usePageType } from "hooks/usePageType";
 
 const Header = () => {
-  const { sidebarToggle, toggleSidebar, pageType, appType } =
-    useContext(SidebarContext);
-  const HeaderComponent = headerComponentMapper[pageType];
+  const { sidebarToggle, toggleSidebar, pageType } = useContext(SidebarContext);
+  const { HeaderMenuComponent } = usePageType(pageType);
+
   const theme = useTheme();
   return (
     <S.HeaderWrapper
@@ -53,7 +49,7 @@ const Header = () => {
         alignItems="center"
         spacing={2}
       >
-        {appType === "products" ? <BasketMenu /> : HeaderComponent}
+        {pageType && <HeaderMenuComponent />}
       </Stack>
       <Box display="flex" alignItems="center">
         <Box

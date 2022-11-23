@@ -432,6 +432,9 @@ export const DarkTheme = createTheme({
       styleOverrides: {
         root: {
           color: colors.secondary.light,
+          borderRadius: 0,
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0,
         },
       },
     },
@@ -448,6 +451,7 @@ export const DarkTheme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
+          borderRadius: 0,
           "& .MuiInputAdornment-positionEnd.MuiInputAdornment-outlined": {
             paddingRight: 6,
           },
@@ -460,6 +464,7 @@ export const DarkTheme = createTheme({
         },
       },
     },
+
     MuiList: {
       styleOverrides: {
         root: {
@@ -636,6 +641,7 @@ export const DarkTheme = createTheme({
           paddingRight: 16,
           color: colors.secondary.light,
           fontSize: 14,
+          borderRadius: 0,
 
           ".MuiSvgIcon-root": {
             transition: "all .2s",

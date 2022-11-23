@@ -4,8 +4,10 @@ import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import { RouteObject } from "react-router";
 import withLoader from "HOC/withLoader";
+import SidebarLayout from "components/ui/SidebarLayout";
 
 const HomePage = withLoader(lazy(() => import("pages/HomePage")));
+const SearchPage = withLoader(lazy(() => import("pages/SearchPage")));
 const OnlineShopPage = withLoader(lazy(() => import("pages/OnlineShopPage")));
 const CategoriesFilterPage = withLoader(
   lazy(() => import("pages/ProductsFilterPage"))
@@ -27,10 +29,7 @@ const routes: RouteObject[] = [
         path: "home",
         element: <Navigate to="/" replace />,
       },
-      {
-        path: constants.routes.PRODUCTS,
-        element: <OnlineShopPage />,
-      },
+
       {
         path: constants.routes.PRODUCTS_FILTER,
         element: <CategoriesFilterPage />,
@@ -52,6 +51,24 @@ const routes: RouteObject[] = [
       {
         path: "*",
         element: <Status404 />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: constants.routes.SEARCH_PAGE,
+        element: <SearchPage />,
+      },
+      {
+        path: constants.routes.SEARCH_PAGE,
+        element: <SearchPage />,
+      },
+      {
+        path: constants.routes.PRODUCTS,
+        element: <OnlineShopPage />,
       },
     ],
   },

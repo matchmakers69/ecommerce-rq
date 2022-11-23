@@ -15,5 +15,5 @@ export const getSearchProductsBySearchValue = async (
   searchValue: string
 ): Promise<Product[]> => {
   const res = await jsonPlaceholderSpa.get(`/products/search?q=${searchValue}`);
-  return res.data;
+  return res.data.products;
 };

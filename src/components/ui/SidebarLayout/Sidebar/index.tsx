@@ -1,5 +1,4 @@
 import { useContext } from "react";
-
 import { Box, Drawer, styled, Divider, useTheme, darken } from "@mui/material";
 
 import SidebarMenu from "./SidebarMenu";
@@ -20,7 +19,7 @@ const SidebarWrapper = styled(Box)(
 );
 
 const Sidebar = () => {
-  const { sidebarToggle, toggleSidebar, appType } = useContext(SidebarContext);
+  const { sidebarToggle, toggleSidebar, pageType } = useContext(SidebarContext);
   const closeSidebar = () => toggleSidebar();
   const theme = useTheme();
 
@@ -59,7 +58,7 @@ const Sidebar = () => {
               background: theme.colors.alpha.white[10],
             }}
           />
-          {appType === "react-query" ? (
+          {pageType === "react-query" ? (
             <SidebarMenu />
           ) : (
             <SidebarShopCategories />

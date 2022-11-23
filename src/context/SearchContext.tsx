@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useMemo, useState } from "react";
+import { useLocalStorage } from "hooks/useLocalStorage";
+import { createContext, ReactNode, useCallback, useMemo } from "react";
 
 type SearchContextProps = {
   children: ReactNode;
@@ -14,18 +15,24 @@ export const SearchContext = createContext<SearchContextType>(
 );
 
 const SearchProvider = ({ children }: SearchContextProps) => {
-  const [filterValue, setFilterValue] = useState<string>("");
+  const [filterValue, setFilterValue] = useLocalStorage<string>(
+    "searchValue",
+    ""
+  );
 
-  const handleUpdateFilterValue = (searchValue: string) => {
-    setFilterValue(searchValue);
-  };
+  const handleUpdateFilterValue = useCallback(
+    (searchValue: string) => {
+      setFilterValue(searchValue);
+    },
+    [setFilterValue]
+  );
 
   const value = useMemo(
     () => ({
       filterValue,
       handleUpdateFilterValue,
     }),
-    [filterValue]
+    [filterValue, handleUpdateFilterValue]
   );
   return (
     <SearchContext.Provider value={value}>{children}</SearchContext.Provider>

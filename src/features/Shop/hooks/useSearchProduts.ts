@@ -13,6 +13,7 @@ const useSearchProduts = (searchValue: string) => {
       onError: (error) => {
         snackError(errorMessage(error));
       },
+      enabled: Boolean(searchValue),
     }
   );
 };

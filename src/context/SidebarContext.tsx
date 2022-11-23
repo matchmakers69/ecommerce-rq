@@ -1,16 +1,20 @@
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useLocation } from "react-router-dom";
 
 type TSidebarContext = {
   sidebarToggle: boolean;
   pageType: string;
-  appType: string;
   toggleSidebar: () => void;
   closeSidebar: () => void;
 };
 
-const PAGE_TYPE = ["lazy-spa", "posts", "users"];
-const APP_TYPE = ["products", "react-query"];
+const PAGE_TYPE = ["shop", "categories", "search"];
 
 export const SidebarContext = createContext<TSidebarContext>(
   {} as TSidebarContext
@@ -19,36 +23,36 @@ export const SidebarContext = createContext<TSidebarContext>(
 export const SidebarProvider = (props: { children: JSX.Element }) => {
   const [sidebarToggle, setSidebarToggle] = useState(false);
   const [pageType, setPageType] = useState("");
-  const [appType, setAppType] = useState("");
   const { pathname } = useLocation();
 
   useEffect(() => {
     const findPath = () => {
-      const [currentPage] = PAGE_TYPE.filter((page) => pathname.includes(page));
-      setPageType(currentPage);
+      const [currenApp] = PAGE_TYPE.filter((page) => pathname.includes(page));
+      setPageType(currenApp);
     };
     findPath();
   }, [pathname]);
 
-  useEffect(() => {
-    const findPath = () => {
-      const [currenApp] = APP_TYPE.filter((page) => pathname.includes(page));
-      setAppType(currenApp);
-    };
-    findPath();
-  }, [pathname]);
-
-  const toggleSidebar = () => {
+  const toggleSidebar = useCallback(() => {
     setSidebarToggle(!sidebarToggle);
-  };
+  }, [sidebarToggle]);
+
   const closeSidebar = () => {
     setSidebarToggle(false);
   };
 
+  const value = useMemo(
+    () => ({
+      sidebarToggle,
+      toggleSidebar,
+      closeSidebar,
+      pageType,
+    }),
+    [pageType, sidebarToggle, toggleSidebar]
+  );
+
   return (
-    <SidebarContext.Provider
-      value={{ sidebarToggle, toggleSidebar, closeSidebar, pageType, appType }}
-    >
+    <SidebarContext.Provider value={value}>
       {props.children}
     </SidebarContext.Provider>
   );

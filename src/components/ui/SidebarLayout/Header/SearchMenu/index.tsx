@@ -1,7 +1,14 @@
-import { Box, List, ListItem, ListItemText } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  useMediaQuery,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import constants from "../../../../../constants";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
+import ActionsMenu from "components/ui/ActionsMenu";
 
 const ListWrapper = styled(Box)(
   ({ theme }) => `
@@ -55,12 +62,16 @@ const ListWrapper = styled(Box)(
 );
 
 const HeaderMenu = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <ListWrapper
       sx={{
         display: {
           xs: "none",
-          md: "block",
+          md: "flex",
+          alignItems: "center",
         },
       }}
     >
@@ -80,14 +91,15 @@ const HeaderMenu = () => {
           classes={{ root: "MuiListItem-indicators" }}
           button
           component={NavLink}
-          to={constants.routes.SEARCH_PAGE}
+          to={constants.routes.PRODUCTS}
         >
           <ListItemText
             primaryTypographyProps={{ noWrap: true }}
-            primary="Search"
+            primary="Shop"
           />
         </ListItem>
       </List>
+      <ActionsMenu matches={matches} />
     </ListWrapper>
   );
 };
